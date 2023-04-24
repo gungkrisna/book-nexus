@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 
-export default function Chip({ label, icon, onPress, activeColor, active }) {
+export default function Chip({ label, icon, onPress, active }) {
     const [isActive, setIsActive] = useState(active);
 
     useEffect(() => {
@@ -10,7 +10,7 @@ export default function Chip({ label, icon, onPress, activeColor, active }) {
 
     const chipStyle = isActive
         ? {
-            backgroundColor: activeColor,
+            backgroundColor: '#CDE7BE',
             borderColor: 'transparent',
         }
         : {
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     chip: {
         borderRadius: 20,
         paddingHorizontal: 18,
-        paddingVertical: 12,
+        paddingVertical: 10,
         marginEnd: 4,
         flexDirection: 'row',
         alignItems: 'center',

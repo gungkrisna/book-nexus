@@ -3,6 +3,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, View, Image, ScrollView, StyleSheet } from 'react-native';
 import Chip from '../components/Chip';
 import { Fire, BookOpen, Headphones } from "react-native-unicons";
+import BooksHorizontal from '../components/BooksHorizontal';
+
+import forYouBooks from '../mockdata/forYouBooks';
+import trendingBooks from '../mockdata/trendingBooks';
+import fiveMinutesRead from '../mockdata/fiveMinutesRead.json';
 
 export default HomeScreen = ({ navigation }) => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -39,36 +44,59 @@ export default HomeScreen = ({ navigation }) => {
                     </View>
                 </View >
 
-                <ScrollView horizontal={true} style={styles.chipContainer}>
+                <ScrollView
+                    contentContainerStyle={styles.chipContainer}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    marginVertical={8}
+                >
                     <Chip
                         label="Trending"
                         icon={<Fire width={18} height={18} />}
-                        activeColor="#CDE7BE"
                         onPress={() => handleChipPress(0)}
                         active={activeIndex === 0}
                     />
                     <Chip
                         label="5-Minutes Read"
                         icon={<BookOpen width={18} height={18} />}
-                        activeColor="#CDE7BE"
                         onPress={() => handleChipPress(1)}
                         active={activeIndex === 1}
                     />
                     <Chip
                         label="Quick Listen"
                         icon={<Headphones width={18} height={18} />}
-                        activeColor="#CDE7BE"
                         onPress={() => handleChipPress(2)}
                         active={activeIndex === 2}
                     />
                 </ScrollView>
 
                 <View style={styles.adCard}>
-                    <Text style={{ fontSize: 20, lineHeight: 30, color: '#EAF4F4', fontFamily: 'GothamBold' }}>Get unlimited access to{"\n"}books in just</Text>
-                    <Text style={{ fontSize: 36, color: '#CDE7BE', fontFamily: 'GothamBold' }}>$9.99</Text>
+                    <View style={{
+                        flexDirection: 'col',
+                        gap: 16,
+                    }}>
+                        <Text style={{ fontSize: 20, lineHeight: 30, color: '#EAF4F4', fontFamily: 'GothamBold' }}>Get unlimited access to{"\n"}books in just</Text>
+                        <Text style={{ fontSize: 36, color: '#CDE7BE', fontFamily: 'GothamBold' }}>$9.99</Text>
+                    </View>
                     <Text style={{ fontSize: 10, color: '#EAF4F4', fontFamily: 'GothamBook' }}>*Terms & conditions apply</Text>
-                    <Image source={require('../assets/ad-book.png')} style={styles.image} />
+                    <Image source={require('../assets/images/ad-book.png')} style={styles.image} />
                 </View>
+
+                <BooksHorizontal
+                    data={forYouBooks}
+                    heading="For you"
+                />
+
+                <BooksHorizontal
+                    data={trendingBooks}
+                    heading="Trending"
+                />
+
+                <BooksHorizontal
+                    data={fiveMinutesRead}
+                    heading="5-Minutes read"
+                />
+
             </ScrollView>
         </SafeAreaView>
     )
@@ -82,15 +110,15 @@ const styles = StyleSheet.create({
     },
     chipContainer: {
         paddingHorizontal: 16,
-        marginVertical: 8,
+        paddingRight: 16
     },
     adCard: {
         height: 201,
-        flexDirection: 'column',
+        flexDirection: 'col',
         alignItems: 'start',
         justifyContent: 'space-between',
         marginHorizontal: 16,
-        marginVertical: 24,
+        marginVertical: 32,
         paddingVertical: 14,
         paddingHorizontal: 18,
         backgroundColor: '#2D3047',
@@ -100,6 +128,6 @@ const styles = StyleSheet.create({
     image: {
         position: 'absolute',
         bottom: 0,
-        right: 0,
+        right: 6,
     },
 });
