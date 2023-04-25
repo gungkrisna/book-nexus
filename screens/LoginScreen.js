@@ -8,7 +8,7 @@ const LoginScreen = ({ navigation }) => {
             source={require('../assets/bg-image.png')}
             style={styles.background}
         >
-            <View style={styles.innerContainer}>
+            <View style={styles.container}>
                 <Button
                     title="Continue"
                     onPress={() => navigation.navigate('Home')}
@@ -25,10 +25,6 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     container: {
-        flex: 1,
-        justifyContent: 'flex-end',
-    },
-    innerContainer: {
         flex: 1,
         justifyContent: 'flex-end',
         padding: 15,

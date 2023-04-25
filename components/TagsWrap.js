@@ -18,7 +18,9 @@ export default function TagsWrap({ tags, heading }) {
             }
             <View style={styles.tagContainer}>
                 {tags.map((tag, index) => (
-                    <Tag key={index} label={tag.label}/>
+                    <View key={index} style={{marginRight: 8, marginBottom: 13}} >
+                    <Tag label={tag.label}/>
+                    </View>
                 ))}
             </View>
         </View>
@@ -32,11 +34,8 @@ TagsWrap.propTypes = {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 24,
+        marginBottom: 27,
         width: '100%'
-    },
-    containerContent: {
-        paddingHorizontal: 16
     },
     headingContainer: {
         flexDirection: 'row',
@@ -54,7 +53,5 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         marginHorizontal: 16,
-        columnGap: 8,
-        rowGap: 13,
     },
 });

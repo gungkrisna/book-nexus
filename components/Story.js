@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'col',
         alignItems: 'center',
-        gap: 8,
+        marginRight: 12,
     },
     avatarContainer: {
         width: 76,
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     avatarText: {
+        marginTop: 8,
         fontSize: 18,
         fontWeight: 'bold',
         color: '#555',

@@ -30,12 +30,12 @@ function LibraryScreen() {
                         height: 48
                     }}
                 >
-                    <View style={{ flexDirection: 'col', gap: 3 }}>
-                        <Text style={{ fontSize: 24, color: '#EAF4F4', fontFamily: 'GothamBold' }}>My Library</Text>
+                    <View style={{ flexDirection: 'col' }}>
+                        <Text style={{ fontSize: 24, color: colors.white, fontFamily: 'GothamBold' }}>My Library</Text>
                         <View style={{
+                            marginTop: 5,
                             borderBottomColor: colors['accent-green'],
                             borderBottomWidth: 2,
-                            borderRadius: '50%',
                         }} />
                     </View>
                 </View >
@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
     },
     chipContainer: {
         paddingHorizontal: 16,
-        gap: 4,
         marginVertical: 24
     }
 });

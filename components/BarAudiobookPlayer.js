@@ -82,17 +82,18 @@ export default function BarAudiobookPlayer({ audiobook }) {
                     <Image source={bookCovers[audiobook.image]} style={styles.image} />
                 </View>
 
-                <View style={{ flex: 1, gap: 8 }}>
+                <View style={{ flex: 1 }}>
                     <Text style={styles.heading}>Continue Listening</Text>
                     <Text style={[styles.description, { maxWidth: '79%' }]} numberOfLines={2} ellipsizeMode="tail">{audiobook.description}</Text>
                 </View>
 
 
-                <View style={{ gap: 8, flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row' }}>
                     <TouchableOpacity
                         activeOpacity={1}
                         hitSlop={{ bottom: 10, left: 10, right: 10, top: 10 }}
                         onPress={togglePlayback}
+                        style={{marginRight: 8}}
                     >
                         <Animated.View style={{ transform: [{ scale: toggleScaleValue.current }] }}>
                             <View style={styles.circleButton}>
@@ -150,7 +151,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 8,
         paddingHorizontal: 16,
-        gap: 12,
         height: 70,
         width: '100%',
     },
@@ -182,23 +182,18 @@ const styles = StyleSheet.create({
     image: {
         height: 54,
         width: 38,
-        marginBottom: 4
+        marginBottom: 4,
+        marginRight: 12
     },
     heading: {
         fontFamily: 'GothamMedium',
         fontSize: 14,
-        color: colors['accent-green']
+        color: colors['accent-green'],
+        marginBottom: 8
     },
     description: {
         fontFamily: 'GothamBook',
         fontSize: 12,
         color: colors.white
     },
-    device: {
-        fontFamily: 'GothamMedium',
-        fontSize: 10,
-        color: colors['accent-green'],
-        marginLeft: 4,
-        textTransform: 'uppercase'
-    }
 });

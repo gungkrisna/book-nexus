@@ -29,12 +29,12 @@ function ExploreScreen() {
                         height: 48
                     }}
                 >
-                    <View style={{ flexDirection: 'col', gap: 3 }}>
-                        <Text style={{ fontSize: 24, color: '#EAF4F4', fontFamily: 'GothamBold' }}>Explore</Text>
+                    <View style={{ flexDirection: 'col' }}>
+                        <Text style={{ fontSize: 24, color: colors.white, fontFamily: 'GothamBold' }}>Explore</Text>
                         <View style={{
+                            marginTop: 5,
                             borderBottomColor: colors['accent-green'],
                             borderBottomWidth: 2,
-                            borderRadius: '50%',
                         }} />
                     </View>
                 </View >
@@ -68,29 +68,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         backgroundColor: '#181A1A',
-    },
-    chipContainer: {
-        paddingHorizontal: 16,
-        paddingRight: 16
-    },
-    adCard: {
-        height: 201,
-        flexDirection: 'col',
-        alignItems: 'start',
-        justifyContent: 'space-between',
-        marginHorizontal: 16,
-        marginVertical: 32,
-        paddingVertical: 14,
-        paddingHorizontal: 18,
-        backgroundColor: '#2D3047',
-        borderRadius: 8,
-        position: 'relative',
-    },
-    image: {
-        position: 'absolute',
-        bottom: 0,
-        right: 6,
-    },
+    }
 });
 
 export default ExploreScreen;

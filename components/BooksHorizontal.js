@@ -9,7 +9,7 @@ import {
     View
 } from 'react-native';
 import { colors, bookCovers } from '../constants';
-import { Feather } from '@expo/vector-icons';
+import { Feather, FontAwesome } from '@expo/vector-icons';
 
 export default function BooksHorizontal({ data, heading }) {
     return (
@@ -20,10 +20,9 @@ export default function BooksHorizontal({ data, heading }) {
                     <View style={{
                         flexDirection: 'row',
                         alignItems: 'center',
-                        gap: 4,
                     }}>
-                        <Text style={[styles.heading, { color: colors['accent-green'], fontSize: 12 }]}>Show all</Text>
-                        <Feather name="arrow-right-circle" size={16} color={colors['accent-green']} />
+                        <Text style={[styles.heading, { color: colors['accent-green'], fontSize: 12, marginRight: 4 }]}>Show all</Text>
+                        <FontAwesome name="chevron-circle-right" size={16} color={colors['accent-green']} />
                     </View>
                 </View>
             }
@@ -44,21 +43,20 @@ export default function BooksHorizontal({ data, heading }) {
                                 <Image source={bookCovers[item.image]} style={styles.image} />
                             )}
                         </View>
-                        <View style={{ gap: 4, marginVertical: 4 }}>
+                        <View style={{ marginVertical: 4 }}>
                             <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
                             <Text style={styles.writer}>{item.writer}</Text>
                             <View
                                 style={{
                                     flexDirection: "row",
                                     marginVertical: 6,
-                                    gap: 16,
                                 }}
                             >
                                 <View
                                     style={{
                                         alignItems: "center",
                                         flexDirection: "row",
-                                        gap: 4,
+                                        marginRight: 16,
                                     }}>
                                     <Feather name="headphones" color={colors['gray-1']} size={16} />
                                     <Text style={styles.info}>5m</Text>
@@ -67,7 +65,6 @@ export default function BooksHorizontal({ data, heading }) {
                                     style={{
                                         alignItems: "center",
                                         flexDirection: "row",
-                                        gap: 4,
                                     }}>
                                 <Feather name="book" color={colors['gray-1']} size={16} />
                                 <Text style={styles.info}>8m</Text>
@@ -125,7 +122,8 @@ const styles = StyleSheet.create({
     title: {
         color: colors.white,
         fontFamily: 'GothamMedium',
-        fontSize: 12
+        fontSize: 12,
+        marginBottom: 4
     },
     writer: {
         color: colors.white,
@@ -133,6 +131,7 @@ const styles = StyleSheet.create({
         fontSize: 10,
     },
     info: {
+        marginLeft: 4,
         color: colors['gray-1'],
         fontFamily: 'GothamBook',
         fontSize: 10,

@@ -11,8 +11,8 @@ export default function Tag({ label }) {
         <TouchableOpacity
             activeOpacity={0.69}
             onPress={handlePress}
-            style={[styles.Tag]}>
-            <Text style={[styles.label]}>{label}</Text>
+            style={styles.Tag}>
+            <Text style={styles.label}>{label}</Text>
         </TouchableOpacity>
     );
 }
@@ -27,9 +27,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'flex-start',
         backgroundColor: colors['gray-4']
-    },
-    iconContainer: {
-        marginRight: 4,
     },
     label: {
         fontFamily: 'GothamBook',

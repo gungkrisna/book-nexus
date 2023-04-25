@@ -123,9 +123,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 10,
     width: '100%',
-    gap: 10
   },
   label: {
+    marginTop: 10,
     fontFamily: 'GothamBook',
     fontSize: 12
   }

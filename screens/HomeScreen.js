@@ -7,8 +7,8 @@ import StoriesHorizontal from '../components/StoriesHorizontal';
 import BooksHorizontal from '../components/BooksHorizontal';
 
 import bookStories from '../mockdata/bookStories.json';
-import forYouBooks from '../mockdata/forYouBooks';
-import trendingBooks from '../mockdata/trendingBooks';
+import forYouBooks from '../mockdata/forYouBooks.json';
+import trendingBooks from '../mockdata/trendingBooks.json';
 import fiveMinutesRead from '../mockdata/fiveMinutesRead.json';
 
 import { colors } from '../constants';
@@ -26,9 +26,11 @@ function HomeScreen() {
                         height: 48
                     }}
                 >
-                    <View style={{ flexDirection: 'col', gap: 3 }}>
+                    <View style={{ flexDirection: 'col' }}>
                         <Text style={{ fontSize: 24, color: colors.white, fontFamily: 'GothamBold' }}>Good Afternoon</Text>
-                        <UnderlineArch />
+                        <View style={{ marginTop: 5 }}>
+                            <UnderlineArch />
+                        </View>
                     </View>
                     <Image style={styles.profileImage} source={require('../assets/images/user.png')} />
                 </View >
@@ -38,10 +40,9 @@ function HomeScreen() {
                 <View style={styles.adCard}>
                     <View style={{
                         flexDirection: 'col',
-                        gap: 16,
                     }}>
                         <Text style={{ fontSize: 20, lineHeight: 30, color: colors['accent-green'], fontFamily: 'GothamBold' }}>Get unlimited access to{"\n"}books in just</Text>
-                        <Text style={{ fontSize: 36, color: '#CDE7BE', fontFamily: 'GothamBold' }}>$9.99</Text>
+                        <Text style={{ fontSize: 36, color: colors['accent-green'], fontFamily: 'GothamBold', marginTop: 16 }}>$9.99</Text>
                     </View>
                     <Text style={{ fontSize: 10, color: colors['accent-green'], fontFamily: 'GothamBook' }}>*Terms & conditions apply</Text>
                     <Image source={require('../assets/images/ad-book.png')} style={styles.image} />
@@ -80,11 +81,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'blue',
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    storyContainer: {
-        paddingHorizontal: 16,
-        gap: 12,
-        marginVertical: 24
     },
     adCard: {
         height: 201,

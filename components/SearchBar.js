@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
     searchBar__unclicked: {
         paddingHorizontal: 16,
         height: 45,
-        gap: 10,
         flexDirection: "row",
         width: "100%",
         backgroundColor: colors['gray-4'],
@@ -75,7 +74,6 @@ const styles = StyleSheet.create({
     searchBar__clicked: {
         paddingHorizontal: 16,
         height: 45,
-        gap: 10,
         flexDirection: "row",
         width: "100%",
         backgroundColor: colors['gray-4'],
@@ -85,6 +83,7 @@ const styles = StyleSheet.create({
         borderColor: colors['accent-green'],
     },
     input: {
+        marginLeft: 10,
         fontFamily: "GothamBook",
         fontSize: 14,
         lineHeight: 16

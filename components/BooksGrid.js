@@ -27,7 +27,7 @@ export default function BooksHorizontal({ data, hasMetadata }) {
                                 <Image source={bookCovers[item.image]} style={styles.image} />
                             )}
                         </View>
-                        <View style={{ gap: 4, marginTop: 16 }}>
+                        <View style={{ marginTop: 16 }}>
                             <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
                             <Text style={styles.writer}>{item.writer}</Text>
                             <Text style={styles.description} numberOfLines={2}>A good story about a guy who was very good until the very end when a 16 y.o girl, youngest FBI agent suddenly appear.</Text>
@@ -37,11 +37,10 @@ export default function BooksHorizontal({ data, hasMetadata }) {
                                     style={{
                                         flexDirection: "row",
                                         marginVertical: 6,
-                                        gap: 16,
                                     }}
                                 >
                                     <View
-                                        style={[styles.info, { backgroundColor: colors['accent-green'] }]}>
+                                        style={[styles.info, { backgroundColor: colors['accent-green'], marginRight: 16 }]}>
                                         <Feather name="headphones" color={colors.black} size={16} />
                                         <Text style={styles.infoText}>5m</Text>
                                     </View>
@@ -59,7 +58,6 @@ export default function BooksHorizontal({ data, hasMetadata }) {
                                     style={{
                                         flexDirection: "row",
                                         marginVertical: 6,
-                                        gap: 16,
                                     }}
                                 >
                                     <View
@@ -105,7 +103,8 @@ const styles = StyleSheet.create({
     title: {
         color: colors.white,
         fontFamily: 'GothamMedium',
-        fontSize: 14
+        fontSize: 14,
+        marginBottom: 4
     },
     writer: {
         color: colors.white,
@@ -122,12 +121,12 @@ const styles = StyleSheet.create({
     info: {
         alignItems: "center",
         flexDirection: "row",
-        gap: 4,
         borderRadius: 8,
         paddingHorizontal: 4,
         height: 24
     },
     infoText: {
+        marginHorizontal: 4,
         color: colors.black,
         fontFamily: 'GothamBook',
         fontSize: 10,
