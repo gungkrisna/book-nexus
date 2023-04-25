@@ -5,11 +5,12 @@ import TagsWrap from '../components/TagsWrap';
 import BooksHorizontal from '../components/BooksHorizontal';
 import { colors } from '../constants';
 
-import bookTopics from '../mockdata/bookTopics';
+import bookTopics from '../mockdata/bookTopics.json';
 
-import fictionBooks from '../mockdata/fictionBooks';
-import cultureAndSocietyBooks from '../mockdata/cultureAndSocietyBooks';
-import lifestyleBooks from '../mockdata/lifestyleBooks';
+import fictionBooks from '../mockdata/fictionBooks.json';
+import cultureAndSocietyBooks from '../mockdata/cultureAndSocietyBooks.json';
+import lifestyleBooks from '../mockdata/lifestyleBooks.json';
+
 import SearchBar from '../components/SearchBar';
 
 
