@@ -42,8 +42,8 @@ export default function Chip({ label, icon, onPress, active }) {
 const styles = StyleSheet.create({
     chip: {
         borderRadius: 20,
-        paddingHorizontal: 18,
-        paddingVertical: 10,
+        paddingHorizontal: 16,
+        paddingVertical: 12,
         marginEnd: 4,
         flexDirection: 'row',
         alignItems: 'center',

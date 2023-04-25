@@ -1,0 +1,50 @@
+[
+  {
+    "id": 0,
+    "image": "NorseMythology",
+    "writer": "Neil Gaiman",
+    "hasSeen": false
+  },
+  {
+    "id": 1,
+    "image": "ExploreYourCreativeMindToPositivity",
+    "writer": "Royryan Mercado",
+    "hasSeen": false
+  },
+  {
+    "id": 2,
+    "image": "Futurama",
+    "writer": "Michael Douglas Jr.",
+    "hasSeen": true
+  },
+  {
+    "id": 3,
+    "image": "TheGoodGuy",
+    "writer": "Mark McCalilister",
+    "hasSeen": true
+  },
+  {
+    "id": 4,
+    "image": "ExploreYourCreativeMindToPositivity",
+    "writer": "Royryan Mercado",
+    "hasSeen": false
+  },
+  {
+    "id": 5,
+    "image": "NorseMythology",
+    "writer": "Neil Gaiman",
+    "hasSeen": false
+  },
+  {
+    "id": 6,
+    "image": "TheGoodGuy",
+    "writer": "Mark McCalilister",
+    "hasSeen": true
+  },
+  {
+    "id": 7,
+    "image": "Futurama",
+    "writer": "Michael Douglas Jr.",
+    "hasSeen": true
+  }
+]

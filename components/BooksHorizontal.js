@@ -8,13 +8,10 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { colors, bookCovers } from '../constants';
 import { ArrowCircleRight, Headphones, Book } from "react-native-unicons";
 
 export default function BooksHorizontal({ data, heading }) {
-    const navigation = useNavigation();
-
     return (
         <View style={styles.container}>
             {heading &&
@@ -40,7 +37,6 @@ export default function BooksHorizontal({ data, heading }) {
                     <TouchableOpacity
                         activeOpacity={0.7}
                         hitSlop={{ top: 10, left: 10, bottom: 10, right: 10 }}
-                        onPress={() => navigation.navigate('Login', { title: item.title })}
                         style={styles.item}
                     >
                         <View style={styles.image}>
@@ -129,10 +125,7 @@ const styles = StyleSheet.create({
     title: {
         color: colors.white,
         fontFamily: 'GothamMedium',
-        fontSize: 12,
-        textOverflow: 'ellipsis',
-        numberOfLines: 1,
-        overflow: 'hidden',
+        fontSize: 12
     },
     writer: {
         color: colors.white,

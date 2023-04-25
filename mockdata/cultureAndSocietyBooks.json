@@ -1,0 +1,26 @@
+[
+  {
+    "id": 0,
+    "image": "NorseMythology",
+    "title": "Norse Mythology",
+    "writer": "Neil Gaiman"
+  },
+  {
+    "id": 1,
+    "image": "ExploreYourCreativeMindToPositivity",
+    "title": "Explore Your Creative Mind to Positivity",
+    "writer": "Royryan Mercado"
+  },
+  {
+    "id": 2,
+    "image": "Futurama",
+    "title": "Futurama",
+    "writer": "Michael Douglas Jr."
+  },
+  {
+    "id": 3,
+    "image": "TheGoodGuy",
+    "title": "The Good Guy",
+    "writer": "Mark McCalilister"
+  }
+]
