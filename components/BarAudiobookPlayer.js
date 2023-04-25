@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity, View, Image, Animated } from 'react-native';
-import { Play, Pause, Forward } from "react-native-unicons";
+import { Feather } from '@expo/vector-icons';
 import { colors, bookCovers } from '../constants';
 
 export default function BarAudiobookPlayer({ audiobook }) {
@@ -98,9 +98,9 @@ export default function BarAudiobookPlayer({ audiobook }) {
                             <View style={styles.circleButton}>
                                 <View style={styles.btnCircle}>
                                     {paused ? (
-                                        <Play color={colors['bg-shade']} width={20} height={20} />
+                                        <Feather name="play" color={colors['bg-shade']} size={20}/>
                                     ) : (
-                                        <Pause color={colors['bg-shade']} width={20} height={20} />
+                                        <Feather name="pause" color={colors['bg-shade']} size={20}/>
                                     )}
                                 </View>
                             </View>
@@ -116,7 +116,7 @@ export default function BarAudiobookPlayer({ audiobook }) {
                         <Animated.View style={{ transform: [{ scale: seekScaleValue.current }] }}>
                             <View style={styles.circleButton}>
                                 <View style={styles.btnCircle}>
-                                    <Forward color={colors['bg-shade']} width={20} height={20} />
+                                    <Feather name="fast-forward" color={colors['bg-shade']} size={20} />
                                 </View>
                             </View>
                         </Animated.View>

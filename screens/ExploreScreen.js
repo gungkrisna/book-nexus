@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, View, ScrollView, StyleSheet } from 'react-native';
 import TagsWrap from '../components/TagsWrap';
@@ -39,7 +39,7 @@ function ExploreScreen() {
                 </View >
 
                 <SearchBar />
-                
+
                 <TagsWrap tags={bookTopics} heading="Topics" />
 
                 <BooksHorizontal

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, View, Image, ScrollView, StyleSheet } from 'react-native';
-import { Fire, BookOpen, Headphones } from "react-native-unicons";
 
 import UnderlineArch from '../components/UnderlineArch';
 import StoriesHorizontal from '../components/StoriesHorizontal';
@@ -15,12 +14,6 @@ import fiveMinutesRead from '../mockdata/fiveMinutesRead.json';
 import { colors } from '../constants';
 
 function HomeScreen() {
-    const [activeIndex, setActiveIndex] = useState(0);
-
-    const handleChipPress = (index) => {
-        setActiveIndex(index);
-    };
-
     return (
         <SafeAreaView edges={['right', 'left', 'top']} style={styles.container}>
             <ScrollView  >

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, View, Image, ScrollView, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, StyleSheet } from 'react-native';
 import { colors } from '../constants';
-import { Bookmark, Headphones, CheckCircle } from 'react-native-unicons'
+import { Feather, FontAwesome5 } from '@expo/vector-icons';
 
 import Chip from '../components/Chip';
 import BooksGrid from '../components/BooksGrid';
@@ -47,19 +47,19 @@ function LibraryScreen() {
                 >
                     <Chip
                         label="Saved Books"
-                        icon={<Bookmark width={18} height={18} />}
+                        icon={<Feather name="bookmark" size={18}/>}
                         onPress={() => handleChipPress(0)}
                         active={activeIndex === 0}
                     />
                     <Chip
                         label="In Progress"
-                        icon={<Headphones width={18} height={18} />}
+                        icon={<Feather name="headphones" size={18}/>}
                         onPress={() => handleChipPress(1)}
                         active={activeIndex === 1}
                     />
                     <Chip
                         label="Completed"
-                        icon={<CheckCircle width={18} height={18} />}
+                        icon={<FontAwesome5 name="check-circle" size={18}/>}
                         onPress={() => handleChipPress(2)}
                         active={activeIndex === 2}
                     />
@@ -84,25 +84,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         gap: 4,
         marginVertical: 24
-    },
-    adCard: {
-        height: 201,
-        flexDirection: 'col',
-        alignItems: 'start',
-        justifyContent: 'space-between',
-        marginHorizontal: 16,
-        marginVertical: 32,
-        paddingVertical: 14,
-        paddingHorizontal: 18,
-        backgroundColor: '#2D3047',
-        borderRadius: 8,
-        position: 'relative',
-    },
-    image: {
-        position: 'absolute',
-        bottom: 0,
-        right: 6,
-    },
+    }
 });
 
 export default LibraryScreen;

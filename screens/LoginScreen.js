@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Button, ImageBackground, StyleSheet, View } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
 

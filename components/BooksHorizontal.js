@@ -9,7 +9,7 @@ import {
     View
 } from 'react-native';
 import { colors, bookCovers } from '../constants';
-import { ArrowCircleRight, Headphones, Book } from "react-native-unicons";
+import { Feather } from '@expo/vector-icons';
 
 export default function BooksHorizontal({ data, heading }) {
     return (
@@ -23,7 +23,7 @@ export default function BooksHorizontal({ data, heading }) {
                         gap: 4,
                     }}>
                         <Text style={[styles.heading, { color: colors['accent-green'], fontSize: 12 }]}>Show all</Text>
-                        <ArrowCircleRight width={16} height={16} color={colors['accent-green']} />
+                        <Feather name="arrow-right-circle" size={16} color={colors['accent-green']} />
                     </View>
                 </View>
             }
@@ -60,7 +60,7 @@ export default function BooksHorizontal({ data, heading }) {
                                         flexDirection: "row",
                                         gap: 4,
                                     }}>
-                                    <Headphones color={colors['gray-1']} height={16} width={16} />
+                                    <Feather name="headphones" color={colors['gray-1']} size={16} />
                                     <Text style={styles.info}>5m</Text>
                                 </View>
                                 <View
@@ -69,7 +69,7 @@ export default function BooksHorizontal({ data, heading }) {
                                         flexDirection: "row",
                                         gap: 4,
                                     }}>
-                                <Book color={colors['gray-1']} height={16} width={16} />
+                                <Feather name="book" color={colors['gray-1']} size={16} />
                                 <Text style={styles.info}>8m</Text>
                                 </View>
                             </View>

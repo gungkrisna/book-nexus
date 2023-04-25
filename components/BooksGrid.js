@@ -8,9 +8,9 @@ import {
     View
 } from 'react-native';
 import { colors, bookCovers } from '../constants';
-import { Eye, Headphones } from "react-native-unicons";
+import { Feather } from '@expo/vector-icons';
 
-export default function BooksHorizontal({ data, heading, hasMetadata }) {
+export default function BooksHorizontal({ data, hasMetadata }) {
     return (
         <View style={styles.container}>
 
@@ -42,12 +42,12 @@ export default function BooksHorizontal({ data, heading, hasMetadata }) {
                                 >
                                     <View
                                         style={[styles.info, { backgroundColor: colors['accent-green'] }]}>
-                                        <Headphones color={colors.black} height={16} width={16} />
+                                        <Feather name="headphones" color={colors.black} size={16} />
                                         <Text style={styles.infoText}>5m</Text>
                                     </View>
                                     <View
                                         style={[styles.info, { backgroundColor: colors['gray-1'] }]}>
-                                        <Eye color={colors.black} height={16} width={16} />
+                                        <Feather name="eye" color={colors.black} size={16} />
                                         <Text style={styles.infoText}>8m</Text>
                                     </View>
                                 </View>
@@ -77,13 +77,8 @@ export default function BooksHorizontal({ data, heading, hasMetadata }) {
     );
 }
 
-BooksHorizontal.defaultProps = {
-    heading: null,
-};
-
 BooksHorizontal.propTypes = {
     data: PropTypes.array.isRequired,
-    heading: PropTypes.string
 };
 
 const styles = StyleSheet.create({

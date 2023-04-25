@@ -31,6 +31,6 @@ function App() {
       </NavigationContainer>
     </SafeAreaProvider>
   );
-};
+}
 
 export default App;

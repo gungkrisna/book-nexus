@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import React from 'react';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { colors } from '../constants';
 
 export default function Tag({ label }) {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeAlt, Search, Bookmark } from "react-native-unicons";
+import { Feather } from '@expo/vector-icons';
 
 // navigation stacks
 import HomeStackScreen from './HomeStackScreen';
@@ -21,11 +21,11 @@ function TabNavigation() {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarIcon: ({ focused }) => {
-          let icon = <HomeAlt color={focused ? colors['accent-green'] : colors['gray-1']} height={24} width={24}/>;
+          let icon = <Feather name="home" color={focused ? colors['accent-green'] : colors['gray-1']} size={24}/>;
           if (route.name === 'Explore') {
-            icon = <Search color={focused ? colors['accent-green'] : colors['gray-1']} height={24} width={24}/>;
+            icon = <Feather name="search" color={focused ? colors['accent-green'] : colors['gray-1']} size={24}/>;
           } else if (route.name === 'Library') {
-            icon = <Bookmark color={focused ? colors['accent-green'] : colors['gray-1']} height={24} width={24}/>;
+            icon = <Feather name="bookmark" color={focused ? colors['accent-green'] : colors['gray-1']} size={24}/>;
           }
 
           return icon;
