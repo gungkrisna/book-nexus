@@ -6,6 +6,8 @@ import UnderlineArch from '../components/UnderlineArch';
 import StoriesHorizontal from '../components/StoriesHorizontal';
 import BooksHorizontal from '../components/BooksHorizontal';
 
+import { Platform } from 'react-native';
+
 import bookStories from '../mockdata/bookStories.json';
 import forYouBooks from '../mockdata/forYouBooks.json';
 import trendingBooks from '../mockdata/trendingBooks.json';
@@ -44,8 +46,11 @@ function HomeScreen() {
                         <Text style={{ fontSize: 20, lineHeight: 30, color: colors['accent-green'], fontFamily: 'GothamBold' }}>Get unlimited access to{"\n"}books in just</Text>
                         <Text style={{ fontSize: 36, color: colors['accent-green'], fontFamily: 'GothamBold', marginTop: 16 }}>$9.99</Text>
                     </View>
-                    <Text style={{ fontSize: 10, color: colors['accent-green'], fontFamily: 'GothamBook' }}>*Terms & conditions apply</Text>
-                    <Image source={require('../assets/images/ad-book.png')} style={styles.image} />
+                    <Text style={{ fontSize: Platform.OS === 'ios' ? 10 : Platform.OS === 'web' ? 8 : 0, color: colors['accent-green'], fontFamily: 'GothamBook' }}>*Terms & conditions apply</Text>
+                    <Image source={require('../assets/images/ad-book.png')} style={[
+  Platform.OS === 'ios' ? {...styles.image} : null, 
+  Platform.OS === 'web' ? {...styles.webAdImage} : null
+]} />
                 </View>
 
                 <BooksHorizontal
@@ -100,6 +105,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         right: 6,
+    },
+    webAdImage: {
+        transform: [{ scale: 0.85}],
+        position: 'absolute',
+        bottom: -12,
+        right: -12
     },
 });
 

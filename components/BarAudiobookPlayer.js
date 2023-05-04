@@ -168,17 +168,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    containerIcon: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 50
-    },
-    containerAudiobook: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        overflow: 'hidden',
-    },
     image: {
         height: 54,
         width: 38,
