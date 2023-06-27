@@ -30,7 +30,7 @@ function LibraryScreen() {
                         height: 48
                     }}
                 >
-                    <View style={{ flexDirection: 'col' }}>
+                    <View style={{ flexDirection: 'column' }}>
                         <Text style={{ fontSize: 24, color: colors.white, fontFamily: 'GothamBold' }}>My Library</Text>
                         <View style={{
                             marginTop: 5,

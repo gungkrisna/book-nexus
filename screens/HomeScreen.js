@@ -1,6 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, View, Image, ScrollView, StyleSheet } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 import UnderlineArch from '../components/UnderlineArch';
 import StoriesHorizontal from '../components/StoriesHorizontal';
@@ -18,17 +19,10 @@ import { colors } from '../constants';
 function HomeScreen() {
     return (
         <SafeAreaView edges={['right', 'left', 'top']} style={styles.container}>
+            <StatusBar style='light' />
             <ScrollView  >
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        alignItems: 'flex-end',
-                        justifyContent: 'space-between',
-                        marginHorizontal: 16,
-                        height: 48
-                    }}
-                >
-                    <View style={{ flexDirection: 'col' }}>
+                <View style={styles.header}>
+                    <View style={{ flexDirection: 'column' }}>
                         <Text style={{ fontSize: 24, color: colors.white, fontFamily: 'GothamBold' }}>Good Afternoon</Text>
                         <View style={{ marginTop: 5 }}>
                             <UnderlineArch />
@@ -41,16 +35,15 @@ function HomeScreen() {
 
                 <View style={styles.adCard}>
                     <View style={{
-                        flexDirection: 'col',
+                        flexDirection: 'column',
                     }}>
                         <Text style={{ fontSize: 20, lineHeight: 30, color: colors['accent-green'], fontFamily: 'GothamBold' }}>Get unlimited access to{"\n"}books in just</Text>
                         <Text style={{ fontSize: 36, color: colors['accent-green'], fontFamily: 'GothamBold', marginTop: 16 }}>$9.99</Text>
                     </View>
                     <Text style={{ fontSize: Platform.OS === 'ios' ? 10 : Platform.OS === 'web' ? 8 : 0, color: colors['accent-green'], fontFamily: 'GothamBook' }}>*Terms & conditions apply</Text>
                     <Image source={require('../assets/images/ad-book.png')} style={[
-  Platform.OS === 'ios' ? {...styles.image} : null, 
-  Platform.OS === 'web' ? {...styles.webAdImage} : null
-]} />
+                        Platform.OS === 'web' ? { ...styles.webAdImage } : { ...styles.image }
+                    ]} />
                 </View>
 
                 <BooksHorizontal
@@ -79,6 +72,14 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         backgroundColor: '#181A1A',
     },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+        marginHorizontal: 16,
+        height: 48,
+        marginTop: 12
+    },
     profileImage: {
         width: 48,
         height: 48,
@@ -89,8 +90,8 @@ const styles = StyleSheet.create({
     },
     adCard: {
         height: 201,
-        flexDirection: 'col',
-        alignItems: 'start',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
         justifyContent: 'space-between',
         marginHorizontal: 16,
         marginTop: 8,
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
         right: 6,
     },
     webAdImage: {
-        transform: [{ scale: 0.85}],
+        transform: [{ scale: 0.85 }],
         position: 'absolute',
         bottom: -12,
         right: -12

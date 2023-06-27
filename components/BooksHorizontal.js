@@ -21,7 +21,7 @@ export default function BooksHorizontal({ data, heading }) {
                         flexDirection: 'row',
                         alignItems: 'center',
                     }}>
-                        <Text style={[styles.heading, { color: colors['accent-green'], fontSize: 12, marginRight: 4 }]}>Show all</Text>
+                        <Text style={[styles.heading, { color: colors['accent-green'], fontSize: 12, marginRight: 8 }]}>Show all</Text>
                         <FontAwesome name="chevron-circle-right" size={16} color={colors['accent-green']} />
                     </View>
                 </View>

@@ -32,7 +32,7 @@ export default function Story({ image, writer, onPress, seen }) {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'col',
+        flexDirection: 'column',
         alignItems: 'center',
         marginRight: 12,
     },

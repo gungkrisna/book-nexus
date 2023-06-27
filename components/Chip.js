@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, cloneElement } from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 
 export default function Chip({ label, icon, onPress, active }) {
@@ -32,7 +32,7 @@ export default function Chip({ label, icon, onPress, active }) {
     return (
         <TouchableOpacity onPress={handlePress} style={[styles.chip, chipStyle]}>
             {icon && <View style={styles.iconContainer}>{
-                React.cloneElement(icon, { style: iconStyle })
+                cloneElement(icon, { style: iconStyle })
             }</View>}
             <Text style={[styles.label, labelStyle]}>{label}</Text>
         </TouchableOpacity>

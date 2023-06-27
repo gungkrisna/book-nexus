@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext, Fragment } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
@@ -14,7 +14,7 @@ import Context from '../context';
 // https://reactnavigation.org/docs/5.x/bottom-tab-navigator/#tabbar
 function CustomTabBar({ descriptors, navigation, state }) {
   // get main app state
-  const { currentAudiobookData, showAudiobookBar } = React.useContext(Context);
+  const { currentAudiobookData, showAudiobookBar } = useContext(Context);
 
   const focusedOptions = descriptors[state.routes[state.index].key].options;
 
@@ -23,7 +23,7 @@ function CustomTabBar({ descriptors, navigation, state }) {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       {showAudiobookBar && <BarAudiobookPlayer audiobook={currentAudiobookData} />}
 
       <SafeAreaView edges={['right', 'left', 'bottom']} style={styles.container}>
@@ -89,7 +89,7 @@ function CustomTabBar({ descriptors, navigation, state }) {
           );
         })}
       </SafeAreaView>
-    </React.Fragment>
+    </Fragment>
   );
 }
 
