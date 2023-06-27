@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // screens
 import HomeScreen from '../screens/HomeScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const HomeStack = createNativeStackNavigator();
 
@@ -12,6 +13,13 @@ function HomeStackScreen() {
       <HomeStack.Screen
         name="HomeStack"
         component={HomeScreen}
+        options={{
+          headerShown: false
+        }}
+      />
+      <HomeStack.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
         options={{
           headerShown: false
         }}

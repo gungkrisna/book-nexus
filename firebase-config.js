@@ -1,4 +1,5 @@
-import { initializeApp } from "firebase/app";
+import firebase from "firebase";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,8 +12,16 @@ const firebaseConfig = {
   storageBucket: "book-nexus-aca3d.appspot.com",
   messagingSenderId: "77197531225",
   appId: "1:77197531225:web:a40806ec6ea6adc7b43948",
-  measurementId: "G-L92Z0JS9E0"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+let app;
+if (!firebase.apps.length) {
+  app = firebase.initializeApp(firebaseConfig);
+} else {
+  app = firebase.app()
+}
+
+const auth = firebase.auth()
+
+export { auth };

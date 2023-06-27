@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, View, Image, ScrollView, StyleSheet } from 'react-native';
+import { Text, View, Image, ScrollView, StyleSheet, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 import UnderlineArch from '../components/UnderlineArch';
@@ -16,7 +16,12 @@ import fiveMinutesRead from '../mockdata/fiveMinutesRead.json';
 
 import { colors } from '../constants';
 
+import { auth } from '../firebase-config';
+import { useNavigation } from '@react-navigation/native';
+
 function HomeScreen() {
+    const navigation = useNavigation();
+
     return (
         <SafeAreaView edges={['right', 'left', 'top']} style={styles.container}>
             <StatusBar style='light' />
@@ -28,7 +33,13 @@ function HomeScreen() {
                             <UnderlineArch />
                         </View>
                     </View>
-                    <Image style={styles.profileImage} source={require('../assets/images/user.png')} />
+                    <Pressable
+                    style={({pressed}) => [
+                      { opacity: pressed ? 0.5 : 1.0 }
+                    ]} 
+                    onPress={() => navigation.push('ProfileScreen')}>
+                      <Image style={styles.profileImage} source={require('../assets/images/user.png')} />
+                    </Pressable>
                 </View >
 
                 <StoriesHorizontal data={bookStories} />
@@ -41,9 +52,7 @@ function HomeScreen() {
                         <Text style={{ fontSize: 36, color: colors['accent-green'], fontFamily: 'GothamBold', marginTop: 16 }}>$9.99</Text>
                     </View>
                     <Text style={{ fontSize: Platform.OS === 'ios' ? 10 : Platform.OS === 'web' ? 8 : 0, color: colors['accent-green'], fontFamily: 'GothamBook' }}>*Terms & conditions apply</Text>
-                    <Image source={require('../assets/images/ad-book.png')} style={[
-                        Platform.OS === 'web' ? { ...styles.webAdImage } : { ...styles.image }
-                    ]} />
+                    <Image source={require('../assets/images/ad-book.png')} style={Platform.OS === 'web' ? { ...styles.webAdImage } : { ...styles.image }} />
                 </View>
 
                 <BooksHorizontal

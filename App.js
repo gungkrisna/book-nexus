@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { useFonts } from 'expo-font';
 import { DarkTheme, NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import RootStack from './navigation/RootStack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
@@ -23,6 +24,7 @@ function App() {
   if (!fontsLoaded) {
     return null;
   }
+
 
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
