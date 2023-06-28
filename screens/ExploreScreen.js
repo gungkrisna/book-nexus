@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, View, ScrollView, StyleSheet } from 'react-native';
+import { Text, TextInput, View, ScrollView, StyleSheet, Pressable, Keyboard } from 'react-native';
 import TagsWrap from '../components/TagsWrap';
 import BooksHorizontal from '../components/BooksHorizontal';
 import { colors } from '../constants';
@@ -11,11 +11,22 @@ import fictionBooks from '../mockdata/fictionBooks.json';
 import cultureAndSocietyBooks from '../mockdata/cultureAndSocietyBooks.json';
 import lifestyleBooks from '../mockdata/lifestyleBooks.json';
 
-import SearchBar from '../components/SearchBar';
-
+import { Feather } from "@expo/vector-icons";
 
 function ExploreScreen() {
+    const [isFocused, setFocused] = useState('')
+    const [searchText, setSearchText] = useState('')
 
+    const handleSearchBarToggle = () => {
+        if (isFocused) {
+            setSearchText(() => '')
+            console.log(searchText);
+            setFocused(false);
+            Keyboard.dismiss();
+        } else {
+            setFocused(true);
+        }
+    };
 
     return (
         <SafeAreaView edges={['right', 'left', 'top']} style={styles.container}>
@@ -39,27 +50,48 @@ function ExploreScreen() {
                     </View>
                 </View >
 
-                <SearchBar />
+                <View style={[styles.searchBarWrapper, { borderWidth: 1, borderColor: isFocused ? colors['accent-green'] : colors['gray-3'] }]}>
+                    <Feather name={isFocused ? "chevron-left" : "search"} onPress={handleSearchBarToggle} size={20} color={colors["gray-1"]} style={{ marginRight: 16 }} />
+                    <TextInput
+                        style={
+                            styles.searchBarInput
+                        }
+                        value={searchText}
+                        placeholder="Title, author, or keyword"
+                        placeholderTextColor={colors["gray-2"]}
+                        onChangeText={text => setSearchText(text)}
+                        onFocus={() => setFocused(() => true)}
+                    />
+                </View>
 
-                <TagsWrap tags={bookTopics} heading="Topics" />
+                {!isFocused ? (
+                    <>
+                        <TagsWrap tags={bookTopics} heading="Topics" />
+                        <BooksHorizontal
+                            data={fictionBooks}
+                            heading="Fiction"
+                        />
 
-                <BooksHorizontal
-                    data={fictionBooks}
-                    heading="Fiction"
-                />
+                        <BooksHorizontal
+                            data={cultureAndSocietyBooks}
+                            heading="Culture & Society"
+                        />
 
-                <BooksHorizontal
-                    data={cultureAndSocietyBooks}
-                    heading="Culture & Society"
-                />
+                        <BooksHorizontal
+                            data={lifestyleBooks}
+                            heading="Lifestyle"
+                        />
+                    </>
+                ) : (
+                    <View style={{marginHorizontal: 16}}>
+                        <Text style={{fontFamily: 'GothamBold', fontSize: 16, color: '#fff'}}>Search results</Text>
+                    </View>
 
-                <BooksHorizontal
-                    data={lifestyleBooks}
-                    heading="Lifestyle"
-                />
+                )}
+
 
             </ScrollView>
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }
 
@@ -68,7 +100,24 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         backgroundColor: '#181A1A',
-    }
+    },
+    searchBarWrapper: {
+        position: 'relative',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        marginHorizontal: 16,
+        paddingHorizontal: 16,
+        marginVertical: 24,
+        borderRadius: 8,
+        backgroundColor: colors['gray-5'],
+    },
+    searchBarInput: {
+        flex: 1,
+        borderRadius: 8,
+        paddingVertical: 14,
+        color: '#fff'
+    },
 });
 
 export default ExploreScreen;
