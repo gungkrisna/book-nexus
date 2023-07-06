@@ -176,11 +176,11 @@ function ProfileDetailsScreen() {
         try {
             setIsLoading(true);
             await handleUpdateName();
-            alert('Profile Updated');
         } catch (error) {
             console.error('Error updating profile:', error);
         } finally {
             setIsLoading(false);
+            alert('Profile Updated');
         }
     };
 
@@ -208,7 +208,7 @@ function ProfileDetailsScreen() {
                             <View style={{ position: 'relative' }}>
                                 {avatarUri ? (
                                     <>
-                                        <Image style={[styles.avatar]} source={{ uri: avatarUri }} />
+                                        <Image style={styles.avatar} source={{ uri: avatarUri }} />
                                         {isUploadingAvatar && (
                                             <ActivityIndicator style={[styles.avatar, { position: 'absolute', backgroundColor: 'rgba(0,0,0,0.8)' }]} size='large' color={colors['accent-green']} />
                                         )}

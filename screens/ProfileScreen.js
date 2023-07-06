@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, View, Pressable, ScrollView, StyleSheet, Image, ActivityIndicator, RefreshControl } from 'react-native';
+import { Text, View, Pressable, ScrollView, StyleSheet, Image, ActivityIndicator, RefreshControl, Platform } from 'react-native';
 import { colors } from '../constants';
 import { MaterialCommunityIcons, Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
@@ -9,6 +9,7 @@ import { Divider } from '../components/Divider'
 import { PressableItem } from '../components/PressableItem';
 import { GetInitials } from '../utils/GetInitials';
 import { Asset } from 'expo-asset';
+import { AudiobookContext } from '../context/AudiobookContextProvider';
 
 function ProfileScreen() {
     const navigation = useNavigation();
@@ -18,6 +19,7 @@ function ProfileScreen() {
     const [refreshing, setRefreshing] = useState(false);
     const [avatarUri, setAvatarUri] = useState(null);
     const isFocused = useIsFocused();
+    const { clearContextData } = useContext(AudiobookContext);
 
     useEffect(() => {
         isFocused && fetchUserData();
@@ -70,6 +72,7 @@ function ProfileScreen() {
         auth
             .signOut()
             .then(() => {
+                clearContextData();
                 navigation.replace("Auth")
             })
             .catch(error => alert(error.message))
@@ -103,7 +106,7 @@ function ProfileScreen() {
                         <View style={{ marginVertical: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
                             <View style={{ flexDirection: 'row' }}>
                                 {avatarUri ? (
-                                    <Image style={[styles.avatar]} source={{ uri: avatarUri }} />
+                                    <Image style={styles.avatar} source={{ uri: avatarUri }} />
                                 ) : (
                                     <View style={styles.avatar}>
                                         <Text style={styles.initial}>{GetInitials({ name })}</Text>
@@ -114,9 +117,9 @@ function ProfileScreen() {
                                     <Text style={{ fontSize: 14, color: colors.white, fontFamily: 'GothamBook', marginHorizontal: 16, marginTop: 4 }}>{auth.currentUser?.email}</Text>
                                 </View>
                             </View>
-                            <View style={{ borderRadius: 20, padding: 10, backgroundColor: colors['accent-green'], justifyContent: 'center' }}>
+                            {Platform.OS !== 'web' && (<View style={{ borderRadius: 20, padding: 10, backgroundColor: colors['accent-green'], justifyContent: 'center' }}>
                                 <Text style={{ fontSize: 10, color: colors.blue, fontFamily: 'GothamBook' }}>{tier}</Text>
-                            </View>
+                            </View>)}
                         </View>
 
                         <Divider style={{ marginVertical: 12 }} />

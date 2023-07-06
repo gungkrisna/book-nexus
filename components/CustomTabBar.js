@@ -4,17 +4,16 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import { colors } from '../constants';
+import { AudiobookContext } from '../context/AudiobookContextProvider';
 
 // components
 import BarAudiobookPlayer from './BarAudiobookPlayer';
 
-// context
-import Context from '../context';
-
 // https://reactnavigation.org/docs/5.x/bottom-tab-navigator/#tabbar
 function CustomTabBar({ descriptors, navigation, state }) {
   // get main app state
-  const { currentAudiobookData, showAudiobookBar } = useContext(Context);
+  const { currentAudiobookData } = useContext(AudiobookContext);
+
 
   const focusedOptions = descriptors[state.routes[state.index].key].options;
 
@@ -24,7 +23,7 @@ function CustomTabBar({ descriptors, navigation, state }) {
 
   return (
     <Fragment>
-      {showAudiobookBar && <BarAudiobookPlayer audiobook={currentAudiobookData} />}
+      {currentAudiobookData && <BarAudiobookPlayer audiobook={currentAudiobookData} />}
 
       <SafeAreaView edges={['right', 'left', 'bottom']} style={styles.container}>
         {state.routes.map((route, index) => {

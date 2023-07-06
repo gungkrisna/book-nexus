@@ -9,10 +9,7 @@ import BooksHorizontal from '../components/BooksHorizontal';
 
 import { Platform } from 'react-native';
 
-import bookStories from '../mockdata/bookStories.json';
-import forYouBooks from '../mockdata/forYouBooks.json';
-import trendingBooks from '../mockdata/trendingBooks.json';
-import fiveMinutesRead from '../mockdata/fiveMinutesRead.json';
+import bookStories from '../sample/bookStories.json';
 
 import { colors } from '../constants';
 
@@ -96,7 +93,7 @@ function HomeScreen() {
                             ]}
                             onPress={() => navigation.push('ProfileScreen')}>
                             {avatarUri ? (
-                                <Image style={[styles.avatar]} source={{ uri: avatarUri }} />
+                                <Image style={styles.avatar} source={{ uri: avatarUri }} />
                             ) : (
                                 <View style={styles.avatar}>
                                     <Text style={styles.initial}>{GetInitials({ name })}</Text>
@@ -119,18 +116,20 @@ function HomeScreen() {
                     </View>
 
                     <BooksHorizontal
-                        data={forYouBooks}
-                        heading="For you"
+                        header="Featured"
+                        limit={4}
                     />
 
                     <BooksHorizontal
-                        data={trendingBooks}
-                        heading="Trending"
+                        header="Trending"
+                        limit={4}
+                        offset={10}
                     />
 
                     <BooksHorizontal
-                        data={fiveMinutesRead}
-                        heading="5-Minutes read"
+                        header="Hidden Gems"
+                        limit={4}
+                        offset={15}
                     />
 
                 </ScrollView>
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
         width: 48,
         height: 48,
         borderRadius: 48 / 2,
-        backgroundColor: 'blue',
+        backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center'
     },

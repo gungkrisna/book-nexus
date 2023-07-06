@@ -1,0 +1,42 @@
+[
+  {
+    "label": "War",
+    "data": "war"
+  },
+  {
+    "label": "United States",
+    "data": "united states"
+  },
+  {
+    "label": "Europe",
+    "data": "europe"
+  },
+  {
+    "label": "Science",
+    "data": "science"
+  },
+  {
+    "label": "Art",
+    "data": "art"
+  },
+  {
+    "label": "Biography",
+    "data": "biography"
+  },
+  {
+    "label": "Education",
+    "data": "education"
+  },
+  {
+    "label": "History",
+    "data": "history"
+  },
+  {
+    "label": "Comedy",
+    "data": "comedy"
+  },
+  {
+    "label": "Romance",
+    "data": "romance"
+  }
+]

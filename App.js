@@ -1,10 +1,12 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useFonts } from 'expo-font';
 import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import RootStack from './navigation/RootStack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
+import { auth } from 'firebase';
+import AudiobookContextProvider from './context/AudiobookContextProvider';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -15,23 +17,36 @@ function App() {
     'GothamBook': require('./assets/fonts/GothamBook.otf'),
   });
 
+  const [authLoaded, setAuthLoaded] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged((user) => {
+      setIsAuthenticated(user ? true : false);
+      setAuthLoaded(true);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
+    if (fontsLoaded && authLoaded) {
       await SplashScreen.hideAsync();
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded, authLoaded]);
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded || !authLoaded) {
     return null;
   }
 
-
   return (
-    <SafeAreaProvider onLayout={onLayoutRootView}>
-      <NavigationContainer theme={DarkTheme}>
-        <RootStack />
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <AudiobookContextProvider>
+      <SafeAreaProvider onLayout={onLayoutRootView}>
+        <NavigationContainer theme={DarkTheme}>
+          <RootStack isAuthenticated={isAuthenticated} />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </AudiobookContextProvider>
   );
 }
 

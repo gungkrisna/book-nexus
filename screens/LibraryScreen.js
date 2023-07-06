@@ -1,33 +1,86 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, View, ScrollView, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Pressable, ActivityIndicator, FlatList } from 'react-native';
 import { colors } from '../constants';
 import { Feather, FontAwesome5 } from '@expo/vector-icons';
+import { auth, db } from '../firebase-config';
+import BookItem from '../components/BookItem';
+import { AudiobookContext } from '../context/AudiobookContextProvider';
 
 import Chip from '../components/Chip';
-import BooksGrid from '../components/BooksGrid';
-
-import fictionBooks from '../mockdata/fictionBooks.json';
-import cultureAndSocietyBooks from '../mockdata/cultureAndSocietyBooks.json';
-import lifestyleBooks from '../mockdata/lifestyleBooks.json';
+import BooksFetcher from '../components/BooksFetcher';
+import LoadingIndicator from '../components/LoadingIndicator';
 
 function LibraryScreen() {
+    const { handleUpdateAudiobookData } = useContext(AudiobookContext);
+
     const [activeIndex, setActiveIndex] = useState(0);
+    const [bookmarkIds, setBookmarkIds] = useState([]);
+
+    const [isLoading, setLoading] = useState(true);
 
     const handleChipPress = (index) => {
         setActiveIndex(index);
     };
 
+    useEffect(() => {
+        if (activeIndex === 0) {
+            const uid = auth.currentUser.uid;
+            const bookmarksRef = db.collection('users').doc(uid).collection('bookmarks');
+            let unsubscribe;
+
+            const fetchData = async () => {
+                try {
+                    const snapshot = await bookmarksRef.get();
+                    const bookmarkIds = snapshot.docs.map((doc) => doc.data().audiobookId);
+                    setBookmarkIds(bookmarkIds);
+
+                    unsubscribe = bookmarksRef.onSnapshot((snapshot) => {
+                        snapshot.docChanges().forEach((change) => {
+                            const changedBookmarkId = change.doc.data().audiobookId;
+                            if (change.type === 'added') {
+                                setBookmarkIds((prevBookmarkIds) => {
+                                    if (!prevBookmarkIds.includes(changedBookmarkId)) {
+                                        prevBookmarkIds.unshift(changedBookmarkId); // Add new item to the front
+                                        return prevBookmarkIds.slice(); // Return a new array reference to trigger re-render
+                                    }
+                                    return prevBookmarkIds;
+                                });
+                            } else if (change.type === 'removed') {
+                                setBookmarkIds((prevBookmarkIds) =>
+                                    prevBookmarkIds.filter((id) => id !== changedBookmarkId)
+                                );
+                            }
+                        });
+                    });
+                } catch (error) {
+                    console.log('Error fetching bookmarks:', error);
+                }
+            };
+
+            fetchData();
+
+            return () => {
+                if (unsubscribe) {
+                    unsubscribe();
+                }
+            };
+        }
+    }, [activeIndex]);
+
+
+
     return (
         <SafeAreaView edges={['right', 'left', 'top']} style={styles.container}>
-            <ScrollView  >
+            <View>
                 <View
                     style={{
                         flexDirection: 'row',
                         alignItems: 'flex-end',
                         justifyContent: 'space-between',
                         marginHorizontal: 16,
-                        height: 48
+                        height: 48,
+                        marginTop: 12
                     }}
                 >
                     <View style={{ flexDirection: 'column' }}>
@@ -38,8 +91,8 @@ function LibraryScreen() {
                             borderBottomWidth: 2,
                         }} />
                     </View>
-                </View >
 
+                </View >
                 <ScrollView
                     contentContainerStyle={styles.chipContainer}
                     horizontal={true}
@@ -47,43 +100,85 @@ function LibraryScreen() {
                 >
                     <Chip
                         label="Saved Books"
-                        icon={<Feather name="bookmark" size={18}/>}
+                        icon={<Feather name="bookmark" size={18} />}
                         onPress={() => handleChipPress(0)}
                         active={activeIndex === 0}
                     />
                     <Chip
                         label="In Progress"
-                        icon={<Feather name="headphones" size={18}/>}
+                        icon={<Feather name="headphones" size={18} />}
                         onPress={() => handleChipPress(1)}
                         active={activeIndex === 1}
                     />
                     <Chip
                         label="Completed"
-                        icon={<FontAwesome5 name="check-circle" size={18}/>}
+                        icon={<FontAwesome5 name="check-circle" size={18} />}
                         onPress={() => handleChipPress(2)}
                         active={activeIndex === 2}
                     />
                 </ScrollView>
+            </View>
 
-                {activeIndex === 0 && <BooksGrid data={fictionBooks} hasMetadata={true} />}
-                {activeIndex === 1 && <BooksGrid data={cultureAndSocietyBooks} hasMetadata={false} />}
-                {activeIndex === 2 && <BooksGrid data={lifestyleBooks} hasMetadata={true} />}
 
-            </ScrollView>
+
+
+            {activeIndex === 0 && bookmarkIds !== null && (
+                <View style={{ flex: 1 }}>
+                    {isLoading && <LoadingIndicator />}
+                    <FlatList
+                        data={bookmarkIds}
+                        keyExtractor={(bookmarkId, index) => index.toString()}
+                        numColumns={2}
+                        contentContainerStyle={styles.contentContainer}
+                        renderItem={({ item: bookmarkId, index }) => (
+                            <BooksFetcher key={index} params={{ id: bookmarkId }}>
+                                {({ books, loading }) => { // Corrected the syntax here
+                                    if (books.length === 0) {
+                                        setLoading(() => true);
+                                        return null;
+                                    }
+
+                                    setLoading(() => false);
+
+                                    if (!isLoading) {
+                                        return (books.map((book, index) => (
+                                            <Pressable
+                                                key={index}
+                                                style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1.0 })}
+                                                onPress={() => handleUpdateAudiobookData(book)}
+                                            >
+                                                <BookItem item={book} />
+                                            </Pressable>
+                                        )));
+                                    }
+                                }}
+                            </BooksFetcher>
+                        )}
+                    />
+                </View>
+            )}
+
+            {activeIndex === 1 && <View />}
+            {activeIndex === 2 && <View />}
+
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexGrow: 1,
         justifyContent: 'flex-start',
         backgroundColor: '#181A1A',
     },
     chipContainer: {
         paddingHorizontal: 16,
-        marginVertical: 24
-    }
+        marginVertical: 24,
+    },
+    contentContainer: {
+        justifyContent: 'center',
+        marginHorizontal: 8,
+    },
 });
 
 export default LibraryScreen;

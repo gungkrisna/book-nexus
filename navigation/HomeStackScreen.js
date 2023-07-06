@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // screens
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import BooksCollectionScreen from '../screens/BooksCollectionScreen';
 
 const HomeStack = createNativeStackNavigator();
 
@@ -20,6 +21,13 @@ function HomeStackScreen() {
       <HomeStack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
+        options={{
+          headerShown: false
+        }}
+      />
+      <HomeStack.Screen
+        name="BooksCollection"
+        component={BooksCollectionScreen}
         options={{
           headerShown: false
         }}
