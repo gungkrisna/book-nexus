@@ -17,6 +17,22 @@ export default function BarAudiobookPlayer({ audiobook }) {
     useEffect(() => {
         let unsubscribe;
 
+        const fetchBookmarkStatus = async () => {
+            if (audiobook) {
+                const uid = auth.currentUser.uid;
+                const bookmarkRef = db.collection('users').doc(uid).collection('bookmarks').doc(audiobook.id);
+
+                const unsubscribe = bookmarkRef.onSnapshot((snapshot) => {
+                    const isBookmarked = snapshot.exists;
+                    setBookmark(() => isBookmarked);
+                });
+
+                setPaused(() => false)
+
+                return unsubscribe;
+            }
+        };
+
         const fetchData = async () => {
             unsubscribe = await fetchBookmarkStatus();
         };
@@ -29,22 +45,6 @@ export default function BarAudiobookPlayer({ audiobook }) {
             }
         };
     }, [audiobook]);
-
-    const fetchBookmarkStatus = async () => {
-        if (audiobook) {
-            const uid = auth.currentUser.uid;
-            const bookmarkRef = db.collection('users').doc(uid).collection('bookmarks').doc(audiobook.id);
-
-            const unsubscribe = bookmarkRef.onSnapshot((snapshot) => {
-                const isBookmarked = snapshot.exists;
-                setBookmark(() => isBookmarked);
-            });
-
-            setPaused(() => false)
-
-            return unsubscribe;
-        }
-    };
 
     const togglePlayback = () => {
         setPaused(!paused);

@@ -26,7 +26,7 @@ export default function BooksCollectionScreen({ route }) {
 
   const renderItem = ({ item }) => (
     <Pressable
-      style={({ pressed }) => { opacity: pressed ? 0.7 : 1.0 }}
+      style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1.0 }]}
       onPress={() => handleUpdateAudiobookData(item)}>
       <BookItem item={item} />
     </Pressable>
