@@ -36,7 +36,7 @@ export default function AudiobookFetcher({ bookRssId }) {
     };
 
     fetchAudiobooks();
-  }, [urlRss]);
+  }, [bookRssId]);
 
   return items;
-};
+}

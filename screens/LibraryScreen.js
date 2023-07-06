@@ -122,41 +122,49 @@ function LibraryScreen() {
 
 
 
-            {activeIndex === 0 && bookmarkIds !== null && (
-                <View style={{ flex: 1 }}>
-                    {isLoading && <LoadingIndicator />}
-                    <FlatList
-                        data={bookmarkIds}
-                        keyExtractor={(bookmarkId, index) => index.toString()}
-                        numColumns={2}
-                        contentContainerStyle={styles.contentContainer}
-                        renderItem={({ item: bookmarkId, index }) => (
-                            <BooksFetcher key={index} params={{ id: bookmarkId }}>
-                                {({ books, loading }) => { // Corrected the syntax here
-                                    if (books.length === 0) {
-                                        setLoading(() => true);
-                                        return null;
-                                    }
+            {activeIndex === 0 && (
+                bookmarkIds.length !== 0 ? (
+                    <View style={{ flex: 1 }}>
+                        {isLoading && <LoadingIndicator />}
+                        <FlatList
+                            data={bookmarkIds}
+                            keyExtractor={(bookmarkId, index) => index.toString()}
+                            numColumns={2}
+                            contentContainerStyle={styles.contentContainer}
+                            renderItem={({ item: bookmarkId, index }) => (
+                                <BooksFetcher key={index} params={{ id: bookmarkId }}>
+                                    {({ books, loading }) => { // Corrected the syntax here
+                                        if (books.length === 0) {
+                                            setLoading(() => true);
+                                            return null;
+                                        }
 
-                                    setLoading(() => false);
+                                        setLoading(() => false);
 
-                                    if (!isLoading) {
-                                        return (books.map((book, index) => (
-                                            <Pressable
-                                                key={index}
-                                                style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1.0 })}
-                                                onPress={() => handleUpdateAudiobookData(book)}
-                                            >
-                                                <BookItem item={book} />
-                                            </Pressable>
-                                        )));
-                                    }
-                                }}
-                            </BooksFetcher>
-                        )}
-                    />
-                </View>
-            )}
+                                        if (!isLoading) {
+                                            return (books.map((book, index) => (
+                                                <Pressable
+                                                    key={index}
+                                                    style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1.0 })}
+                                                    onPress={() => handleUpdateAudiobookData(book)}
+                                                >
+                                                    <BookItem item={book} />
+                                                </Pressable>
+                                            )));
+                                        }
+                                    }}
+                                </BooksFetcher>
+                            )}
+                        />
+                    </View>
+                ) : (
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 24 }}>
+                        <Text style={{ color: '#fff', textAlign: 'center', fontFamily: 'GothamBold' }}>No bookmark is currently added.</Text>
+                        <Text style={{ color: '#fff', textAlign: 'center', fontFamily: 'GothamBook', marginTop: 8 }}>To add a bookmark, select a book and tap the bookmark icon on the audiobook bar.</Text>
+                    </View>
+                ))}
+
+
 
             {activeIndex === 1 && <View />}
             {activeIndex === 2 && <View />}
